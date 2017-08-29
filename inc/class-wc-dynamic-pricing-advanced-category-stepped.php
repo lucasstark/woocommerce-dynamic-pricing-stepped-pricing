@@ -94,7 +94,11 @@ class WC_Dynamic_Pricing_Advanced_Category_Stepped extends WC_Dynamic_Pricing_Ad
 					$b = 1;
 				}
 
-				$total_quantity_which_can_be_discounted = $b * $rule['from'];
+				$total_quantity_which_can_be_discounted = ($b * $rule['adjust']);
+
+				if ($total_quantity_which_can_be_discounted <= 0){
+					continue;
+				}
 
 				$cart_to_process = wp_list_filter( $temp_cart, array(
 					'can_be_discounted' => true
